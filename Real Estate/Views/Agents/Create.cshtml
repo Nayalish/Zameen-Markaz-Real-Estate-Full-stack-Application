@@ -1,0 +1,85 @@
+﻿@model Real_Estate.Models.Agent
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+@* <partial name="_Notification" /> *@
+<div>
+    <div class="row">
+        <div class="col-6 offset-3 border border-dark p-4 rounded-top">
+            <h1 class="text-center text-info">Add Agent Info 👨‍🏫</h1>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input type="text" asp-for="Name" placeholder="Enter  name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label asp-for="Location"></label>
+                    <input type="text" asp-for="Location" placeholder="Enter Description" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+
+                </div>
+
+                <div class="row mt-2">
+                    
+                        <div class="col-8">
+                            <label asp-for="Image"></label>
+                            <input type="file" asp-for="Image" class="form-control" id="ChooseImg" />
+                        </div>
+                        <div class="col-4">
+                        <img src="https://placehold.jp/150*150.png" style="height:200px;width:200px;border:1px solid black;border-radius:10px;padding:10px" alt="photo" id="PrevImg" />
+                        </div>
+
+                    
+                </div>
+                <br></br>
+                <div class="form-group">
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+                <a class="btn btn-sm btn-warning p-2 m-2 " asp-action="Index" >Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#ChooseImg').change(function (e) {
+            var url = $('#ChooseImg').val();
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+            if (ChooseImg.files && ChooseImg.files[0] && (ext == "gif" || ext == "jpg" || ext == "jfif" || ext == "png" || ext == "bmp")) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var output = document.getElementById('PrevImg');
+                    output.src = reader.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+
+        });
+    });
+
+</script>
+
+@* @section Scripts {
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    } *@
+
+
+
+
+
+
+
+
+
+
+

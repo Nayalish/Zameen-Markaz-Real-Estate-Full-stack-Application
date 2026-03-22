@@ -1,0 +1,87 @@
+﻿@model Real_Estate.Models.User
+
+<style>
+   
+    .login-wrapper {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #1d2671, #c33764);
+    }
+
+    .blk {
+        color: black;
+    }
+    .login-card {
+        width: 400px;
+        margin: 100px auto; /* centers horizontally */
+        padding: 30px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+        /* Inputs */
+        .login-card .form-control {
+            background: rgba(255, 255, 255, 0.85);
+            border: 2px solid black;
+        }
+
+    .form-control:focus {
+        border: 2px solid black;
+        box-shadow: none;
+    }
+
+        /* Button */
+        .login-card .btn-primary {
+            padding: 10px;
+            font-weight: 600;
+        }
+
+
+    /* login End */
+</style>
+@{
+    ViewData["Title"] = "Login";
+}
+
+@* <partial name="_Notification" /> *@
+<div class="img d-flex align-items-center js-fullheight" style="background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+             url('@Url.Content("~/website/images/bg_1.jpg")');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;">
+    <div class="login-card">
+        <h3 class="text-center mb-4">Login</h3>
+
+        <form asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3 blk">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4 blk">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+            <div class="d-grid">
+                <p>Don't have an account? <p /><a asp-action="Signup"> Signup</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+} *@
